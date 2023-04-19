@@ -9,6 +9,8 @@ const submit = document.querySelector('.submit-btn');
 console.log(submit);
 const gallery = document.querySelector('.gallery');
 console.log(gallery);
+const button = document.querySelector('.button');
+console.log(button);
 
 let value;
 // виводимо рядок запиту з поля в функцію 
@@ -17,6 +19,7 @@ input.addEventListener('input', (event) => {
     console.log(value);
     if (value.length < 1){
         gallery.innerHTML = '';
+        button.innerHTML = '';
         Notiflix.Notify.warning('Результати пошуку скинуто')
     }
 })
@@ -36,10 +39,6 @@ submit.addEventListener('click', (event) => {
             Notiflix.Notify.success(`Пошук здійснено! Знайдено ${pictures.totalHits} зображень`);
             console.log(pictures);
             renderImagesGallery(pictures);
-            const button = document.createElement("button");
-            button.innerText = "Завантажити ще";
-            document.body.appendChild(button);
-            // button.onclick
         }
         }
         )
@@ -56,26 +55,31 @@ function renderImagesGallery(pictures){
     <img src='${hit.webformatURL}' alt="${hit.tags}" loading="lazy" />
     <div class="info">
       <p class="info-item">
-        <b>Вподобань: ${hit.likes}</b>
+        <b>Вподобань: </b>
+        <br>
+        ${hit.likes}
       </p>
       <p class="info-item">
-        <b>Переглядів: ${hit.views}</b>
+        <b>Переглядів: </b>
+        <br>
+        ${hit.views}
       </p>
       <p class="info-item">
-        <b>Коментарів: ${hit.comments}</b>
+        <b>Коментарів: </b>
+        <br>
+        ${hit.comments}
       </p>
       <p class="info-item">
-        <b>Завантажень: ${hit.downloads}</b>
+        <b>Завантажень: </b>
+        <br>
+        ${hit.downloads}
       </p>
     </div>
   </div>
   </div>
   `
    })
-//    const button = document.createElement("button");
-//    button.innerText = "Завантажити ще";
-//    document.body.appendChild(button);
-   
+   button.innerHTML = `<button class='load-btn'>Завантажити ще</button>`;
 }
 
 
