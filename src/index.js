@@ -39,6 +39,7 @@ submit.addEventListener('submit', (event) => {
     event.preventDefault();
     gallery.innerHTML = '';
     moreGallery.innerHTML = '';
+    page = 1;
     console.log(value);
     fetch(`https://pixabay.com/api/?key=35499078-ae1aac6b87ed3c45ca8fde2a7&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`)
     .then(response => response.json())
