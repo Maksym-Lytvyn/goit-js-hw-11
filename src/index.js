@@ -5,7 +5,7 @@ import axios from "axios";
 // захоплюємо необхідні елементи
 const input = document.querySelector('.search-form');
 console.log(input);
-const submit = document.querySelector('.submit-btn');
+const submit = document.querySelector('.search-form');
 console.log(submit);
 const gallery = document.querySelector('.gallery');
 console.log(gallery);
@@ -35,14 +35,17 @@ input.addEventListener('input', (event) => {
 
 
 // надсилаємо запит на сервер
-submit.addEventListener('click', (event) => {
+submit.addEventListener('submit', (event) => {
     event.preventDefault();
+    gallery.innerHTML = '';
+    moreGallery.innerHTML = '';
     console.log(value);
     fetch(`https://pixabay.com/api/?key=35499078-ae1aac6b87ed3c45ca8fde2a7&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`)
     .then(response => response.json())
     .then(pictures => {
         if (pictures.total === 0) {
-            Notiflix.Notify.failure('Вибачте, але за вашим пошуковим запитом не знайдено зображень. Спробуйте ще раз')
+          loadMore.classList.add('hidden');
+          Notiflix.Notify.failure('Вибачте, але за вашим пошуковим запитом не знайдено зображень. Спробуйте ще раз')
         }
         else {
             Notiflix.Notify.success(`Пошук здійснено! Знайдено ${pictures.totalHits} зображень`);

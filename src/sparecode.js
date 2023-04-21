@@ -13,11 +13,13 @@
 // console.log(loadMore);
 // const buttonArea = document.querySelector('.button-area');
 // console.log(buttonArea);
+// const moreGallery = document.querySelector('.more-gallery');
+// console.log(moreGallery);
 
 // // визначаємо початкові "лічильні" змінні
 // let value;
 // let page = 1;
-// let perPage = 20;
+// // let perPage = 20;
 
 
 // // виводимо рядок запиту з поля в функцію 
@@ -58,8 +60,8 @@
 
 // // робимо ідентичний запит, але розширюючи об'єм результатів з кожним натисканням
 // loadMore.addEventListener('click', () => {
-//   perPage +=20
-//   fetch(`https://pixabay.com/api/?key=35499078-ae1aac6b87ed3c45ca8fde2a7&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&page=1&per_page=${perPage}`)
+//   page +=1
+//   fetch(`https://pixabay.com/api/?key=35499078-ae1aac6b87ed3c45ca8fde2a7&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=20`)
 //     .then(response => response.json())
 //     .then(pictures => {
 //         if (pictures.total === 0) {
@@ -82,7 +84,7 @@
 
 // // виводимо потрібні дані з масиву об'єктів та розкладаємо їх по тегах в шаблонній розмітці
 // function renderImagesGallery(pictures){
-//    gallery.innerHTML = pictures.hits.map((hit) => {
+//    const markup = pictures.hits.map((hit) => {
 //     return `
 //     <div class='all-cards'>
 //     <div class="photo-card">
@@ -113,6 +115,8 @@
 //   </div>
 //   `
 //    })
+//    .join("");
+//    gallery.insertAdjacentHTML('beforeend', markup);
 // }
 
 
